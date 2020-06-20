@@ -1,0 +1,121 @@
+.header {
+  width: 100%;
+  height: 52px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  transition: 1s background-color;
+}
+
+.bgc-white {
+  background-color: #ffffffff;
+}
+
+.bgc-no {
+  background-color: #ffffff00;
+}
+
+.no-visible {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.progress {
+  height: 3px;
+  background-color: deeppink;
+  z-index: 2;
+}
+
+.logo {
+  width: 180px;
+  height: 40px;
+  margin: 4px 0;
+}
+
+.icon {
+  font-size: 18px;
+  margin: 15px 15px;
+  cursor: pointer;
+  color: #666666;
+
+  :hover {
+    color: dodgerblue;
+  }
+}
+
+.menu-link {
+  display: block;
+  font-size: 20px;
+  padding: 8px 12px;
+  float: left;
+  color: #666666;
+
+}
+.menu-link:hover {
+  color: dodgerblue;
+  border-bottom: 2px solid dodgerblue;
+}
+
+.menu-link-active {
+  color: dodgerblue;
+  border-bottom: 2px solid dodgerblue;
+}
+
+.menu-div {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+}
+
+.menu-icon {
+  position: absolute;
+  right: 0;
+  font-size: 24px;
+  margin: 13px 30px;
+  cursor: pointer;
+  color: #bbbbbb;
+
+  :hover {
+    color: dodgerblue;
+  }
+}
+
+.menu-plus {
+  width: 100vw;
+  background-color: #fff;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transition: 0.5s height;
+}
+
+.menu-plus-0h {
+  height: 0;
+
+  > * {
+    visibility: hidden;
+  }
+}
+
+.menu-plus-100h {
+  height: 100vh;
+
+  > * {
+    visibility: visible;
+  }
+}
+
+.menu-plus-row {
+  > .icon {
+    font-size: 30px;
+    margin: 10px auto;
+  }
+}
