@@ -1,0 +1,15 @@
+.article-container {
+  padding: 30px 15% 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.blog-content {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  max-width: 800px !important;
+  margin: 0 auto;
+
+}
+
+@import '~@/assets/theme/ursine-polar.scss';

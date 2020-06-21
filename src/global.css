@@ -1,4 +1,11 @@
-/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
 html,
 body,
 p,
@@ -78,9 +85,4 @@ th {
 td:not([align]),
 th:not([align]) {
   text-align: left;
-}
-
-html, body, #root {
-  width: 100%;
-  height: 100%;
 }

@@ -1,0 +1,78 @@
+import React from 'react';
+import './blog.scss';
+import CoverHeader from '@/components/CoverHeader';
+import $ from 'jquery';
+import marked from 'marked';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-light.css';
+import { toTopNow } from '@/util/page';
+import { getBlogOne } from '@/services/blog';
+import { getSortName } from '@/services/sort';
+
+class Blog extends React.Component {
+  state = {
+    id: 0,
+    sortName: '',
+    title: '',
+    description: '',
+    createTime: '',
+    updateTime: '',
+    content: '',
+    cover: '',
+  };
+
+  componentDidMount() {
+    toTopNow();
+    const id = this.props.match.params.id;
+    getBlogOne(id)
+      .then((data) => {
+        document.title = data.title;
+        this.setState({
+          id: id,
+          sortName: getSortName(data.sortId),
+          title: data.title,
+          description: data.description,
+          createTime: data.createTime,
+          updateTime: data.updateTime,
+          content: data.content,
+          cover: data.cover,
+        });
+      });
+
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  }
+
+  render() {
+    const {
+      sortName,
+      title,
+      description,
+      createTime,
+      content,
+      cover,
+    } = this.state;
+    return (
+      <div>
+        <CoverHeader
+          cover={cover}
+          begin={'#' + sortName}
+          content={title}
+          after={description}
+        />
+        <div className="article-container">
+          <div className="blog-content">
+            <div
+              className="blog"
+              dangerouslySetInnerHTML={{
+                __html: marked(content),
+              }}/>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Blog;
