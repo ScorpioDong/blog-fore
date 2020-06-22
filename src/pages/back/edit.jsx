@@ -5,8 +5,8 @@ import { StarOutlined, UploadOutlined, PlusOutlined } from '@ant-design/icons';
 import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import marked from 'marked';
-import { getBlogOne } from '@/services/blog';
-import { blogUpdate, blogUpload, imgUpload } from '@/services/edit';
+import { blogUpdate, blogUpload, getBlogOne } from '@/services/blog';
+import { imgUpload } from '@/services/edit';
 import memory from '@/util/memory';
 
 class Edit extends React.Component {
@@ -115,8 +115,9 @@ class Edit extends React.Component {
                               content: value,
                               cover: cover,
                             });
+                            message.success('修改成功！');
                           }
-                          history.push('/admin/fore');
+                          history.push('/admin/blog');
                         }
                       }
               >

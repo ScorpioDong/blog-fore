@@ -18,6 +18,19 @@ export const getBlogOne = async (id) => {
   }
 }
 
+export const blogUpload = async (blog) => {
+  const resp = await request.post('/blog/add', {
+    data: blog,
+  });
+  return true;
+};
+
+export const blogUpdate = async (blog) => {
+  const resp = await request.put('/blog/update', {
+    data: blog,
+  });
+  return true;
+};
 
 export const deleteBlog = async (id) => {
   const resp = await request.delete('/blog/' + id);
