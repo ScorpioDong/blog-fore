@@ -17,6 +17,7 @@ class Edit extends React.Component {
     description: '',
     sortId: 0,
     cover: '',
+    blog: {},
   };
 
   editor = {};
@@ -32,6 +33,7 @@ class Edit extends React.Component {
             value: data.content,
             cover: data.cover,
             sortId: data.sortId,
+            blog: data,
           });
         });
     }
@@ -39,7 +41,7 @@ class Edit extends React.Component {
 
   render() {
     const { history } = this.props;
-    const { value, title, description, sortId, cover } = this.state;
+    const { value, title, description, sortId, cover, blog } = this.state;
     const uploadButton = (
       <div>
         <PlusOutlined/>
@@ -114,6 +116,7 @@ class Edit extends React.Component {
                               description: description,
                               content: value,
                               cover: cover,
+                              contentPath: blog.contentPath,
                             });
                             message.success('修改成功！');
                           }
