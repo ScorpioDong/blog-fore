@@ -2,7 +2,6 @@ import React from 'react';
 import './blog.scss';
 import CoverHeader from '@/components/CoverHeader';
 import $ from 'jquery';
-import marked from 'marked';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.css';
 import { toTopNow } from '@/util/page';
@@ -25,7 +24,7 @@ class Blog extends React.Component {
   componentDidMount() {
     toTopNow();
     const id = this.props.match.params.id;
-    getBlogOne(id)
+    getBlogOne(id, false)
       .then((data) => {
         document.title = data.title;
         this.setState({
@@ -67,7 +66,7 @@ class Blog extends React.Component {
             <div
               className="blog"
               dangerouslySetInnerHTML={{
-                __html: marked(content),
+                __html: content,
               }}/>
           </div>
         </div>

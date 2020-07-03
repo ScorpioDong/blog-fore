@@ -26,7 +26,7 @@ class Edit extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     if (id !== '0') {
-      getBlogOne(id)
+      getBlogOne(id, true)
         .then((data) => {
           this.setState({
             title: data.title,

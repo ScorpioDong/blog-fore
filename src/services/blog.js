@@ -1,7 +1,7 @@
 import { request } from '@/util/requst';
 
 export const getBlogPage = async (current, size) => {
-  const resp = await request.get('/blog/' + current + '/' + size);
+  const resp = await request.get('/blog/page/' + current + '/' + size);
   if (resp.code === '200') {
     return resp.data;
   } else {
@@ -9,8 +9,8 @@ export const getBlogPage = async (current, size) => {
   }
 }
 
-export const getBlogOne = async (id) => {
-  const resp = await request.get('/blog/' + id);
+export const getBlogOne = async (id, isMarkdown) => {
+  const resp = await request.get('/blog/one/' + id + '/' + isMarkdown);
   if (resp.code === '200') {
     return resp.data;
   } else {
