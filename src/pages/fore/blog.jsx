@@ -8,6 +8,7 @@ import 'highlight.js/styles/atom-one-light.css';
 import { toTopNow } from '@/util/page';
 import { getBlogOne } from '@/services/blog';
 import { getSortName } from '@/services/sort';
+import { baseUrl } from '@/util/requst';
 
 class Blog extends React.Component {
   state = {
@@ -56,7 +57,7 @@ class Blog extends React.Component {
     return (
       <div>
         <CoverHeader
-          cover={cover}
+          cover={baseUrl + cover}
           begin={'#' + sortName}
           content={title}
           after={description}

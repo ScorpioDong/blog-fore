@@ -28,7 +28,7 @@ export default (props) => {
                   history.push('/blog/' + id);
                 }
               }>
-                <div className="blog-cover-img" style={{ backgroundImage: 'url("' + cover + '")' }}/>
+                <div className="blog-cover-img" style={{ backgroundImage: 'url("' + baseUrl + cover + '")' }}/>
               </a>
               <div className="sort-tags">
                 <a onClick={() => {

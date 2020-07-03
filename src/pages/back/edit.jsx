@@ -8,6 +8,7 @@ import marked from 'marked';
 import { blogUpdate, blogUpload, getBlogOne } from '@/services/blog';
 import { imgUpload } from '@/services/edit';
 import memory from '@/util/memory';
+import { baseUrl } from '@/util/requst';
 
 class Edit extends React.Component {
 
@@ -178,7 +179,7 @@ class Edit extends React.Component {
                 listType="picture-card"
                 showUploadList={false}
               >
-                {cover !== '' ? <img src={cover} alt="avatar" style={{ width: '100%' }}/> : uploadButton}
+                {cover !== '' ? <img src={baseUrl + cover} alt="avatar" style={{ width: '100%' }}/> : uploadButton}
               </Upload>
               <div className="upload-container">
                 <Upload

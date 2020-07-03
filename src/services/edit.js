@@ -7,7 +7,7 @@ export const imgUpload = async (file, isMark) => {
     data: form,
   });
   if (isMark)
-    return '![](' + baseUrl + resp.data + ')';
+    return '![](' + resp.data + ')';
   else
-    return baseUrl + resp.data;
+    return resp.data;
 };

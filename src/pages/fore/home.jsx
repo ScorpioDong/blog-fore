@@ -20,8 +20,6 @@ class Home extends React.Component {
   };
 
   componentDidMount() {
-    webUpdate();
-    sortUpdate();
     this.page(this.state.pagination.current, this.state.pagination.size);
     toTopNow();
   }

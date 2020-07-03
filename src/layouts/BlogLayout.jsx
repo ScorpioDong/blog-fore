@@ -2,15 +2,18 @@ import React from 'react';
 import { webUpdate } from '@/services/web';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import memory from '@/util/memory';
+import $ from 'jquery';
+import Loading from '@/components/Loading';
+import { sortUpdate } from '@/services/sort';
 
-class BlogLayout extends React.Component{
+class BlogLayout extends React.Component {
   state = {
     scrollScale: 0,
     progressVisible: false,
   };
 
   componentDidMount() {
-    webUpdate();
     window.addEventListener('scroll', this.handleScroll);
   }
 
@@ -25,24 +28,35 @@ class BlogLayout extends React.Component{
     this.setState({
       scrollScale: scrollScale,
       progressVisible: progressVisible,
+      loading: 0,
     });
   };
 
   render() {
-    const { scrollScale, progressVisible } = this.state;
+    const { scrollScale, progressVisible, loading } = this.state;
     const { children, location, route } = this.props;
-    return (
-      <div className='layout'>
-        <Header
-          selectValue={location.pathname}
-          routes={route.routes}
-          progressValue={scrollScale}
-          progressVisible={progressVisible}
-        />
-        {children}
-        <Footer/>
-      </div>
-    )
+
+    if ($.isEmptyObject(memory.web) || memory.sorts.length === 0) {
+      webUpdate();
+      sortUpdate();
+      window.setTimeout(() => {
+        this.setState({ loading: loading + 1 });
+      }, 1000);
+      return <Loading/>;
+    } else {
+      return (
+        <div className='layout'>
+          <Header
+            selectValue={location.pathname}
+            routes={route.routes}
+            progressValue={scrollScale}
+            progressVisible={progressVisible}
+          />
+          {children}
+          <Footer/>
+        </div>
+      );
+    }
   }
 }
 
