@@ -20,8 +20,8 @@ const codeMessage = {
   504: '网关超时。',
 };
 
-// export const baseUrl = "http://182.61.3.51:8080/api";
-export const baseUrl = "http://localhost:8080/api";
+export const baseUrl = "http://182.61.3.51:8080/api";
+// export const baseUrl = "http://localhost:8080/api";
 
 /**
  * 异常处理程序

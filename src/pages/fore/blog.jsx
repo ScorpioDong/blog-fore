@@ -8,6 +8,7 @@ import { toTopNow } from '@/util/page';
 import { getBlogOne } from '@/services/blog';
 import { getSortName } from '@/services/sort';
 import { baseUrl } from '@/util/requst';
+import Loading from '@/components/Loading';
 
 class Blog extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class Blog extends React.Component {
     updateTime: '',
     content: '',
     cover: '',
+    loading: true,
   };
 
   componentDidMount() {
@@ -36,6 +38,7 @@ class Blog extends React.Component {
           updateTime: data.updateTime,
           content: data.content,
           cover: data.cover,
+          loading: false,
         });
       });
 
@@ -52,26 +55,31 @@ class Blog extends React.Component {
       createTime,
       content,
       cover,
+      loading,
     } = this.state;
-    return (
-      <div>
-        <CoverHeader
-          cover={baseUrl + cover}
-          begin={'#' + sortName}
-          content={title}
-          after={description}
-        />
-        <div className="article-container">
-          <div className="blog-content">
-            <div
-              className="blog"
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}/>
+    if (loading) {
+      return <Loading/>;
+    } else {
+      return (
+        <div>
+          <CoverHeader
+            cover={baseUrl + cover}
+            begin={'#' + sortName}
+            content={title}
+            after={description}
+          />
+          <div className="article-container">
+            <div className="blog-content">
+              <div
+                className="blog"
+                dangerouslySetInnerHTML={{
+                  __html: content,
+                }}/>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
