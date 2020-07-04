@@ -14,25 +14,17 @@ const { Header, Content, Footer } = Layout;
 class BackLayout extends React.Component {
 
   state = {
-    avatar: '',
     loading: 0
   };
 
   constructor(props) {
     super(props);
-    webUpdate();
-    sortUpdate();
   }
 
   componentDidMount() {
-    webUpdate();
     if (getToken() === '') {
       this.props.history.push('/login');
-      return;
     }
-    this.setState({
-      avatar: memory.web.avatar,
-    });
   }
 
   render() {
@@ -47,7 +39,8 @@ class BackLayout extends React.Component {
     );
 
     const { route, location, children } = this.props;
-    const { avatar, loading } = this.state;
+    const { loading } = this.state;
+
     if ($.isEmptyObject(memory.web) || memory.sorts.length === 0) {
       webUpdate();
       sortUpdate();
@@ -80,7 +73,7 @@ class BackLayout extends React.Component {
               <Avatar
                 className={style.avatar}
                 size={42}
-                src={baseUrl + avatar}
+                src={baseUrl + memory.web.avatar}
               />
             </Dropdown>
           </Header>

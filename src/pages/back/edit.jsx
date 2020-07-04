@@ -6,9 +6,10 @@ import Editor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import marked from 'marked';
 import { blogUpdate, blogUpload, getBlogOne } from '@/services/blog';
-import { imgUpload } from '@/services/edit';
+import { getImgs, imgUpload } from '@/services/edit';
 import memory from '@/util/memory';
 import { baseUrl } from '@/util/requst';
+import ImageDrawer from '@/components/ImageDrawer';
 
 class Edit extends React.Component {
 
@@ -19,6 +20,9 @@ class Edit extends React.Component {
     sortId: 0,
     cover: '',
     blog: {},
+    drawer: false,
+    imgs: [],
+    drawerMode: 'cover',
   };
 
   editor = {};
@@ -42,9 +46,9 @@ class Edit extends React.Component {
 
   render() {
     const { history } = this.props;
-    const { value, title, description, sortId, cover, blog } = this.state;
+    const { value, title, description, sortId, cover, blog, drawer, imgs, drawerMode } = this.state;
     const uploadButton = (
-      <div>
+      <div style={{ marginTop: 40 }}>
         <PlusOutlined/>
         <div className='ant-upload-text'>添加封面</div>
       </div>
@@ -165,41 +169,73 @@ class Edit extends React.Component {
                   </Select>
                 </Col>
               </Row>
-              <Upload
-                accept="image/*"
-                className='cover'
-                customRequest={
-                  async (value) => {
-                    const url = await imgUpload(value.file, false);
+              <div
+                className='cover-container'
+                onClick={
+                  async () => {
+                    const allImages = await getImgs();
                     this.setState({
-                      cover: url,
+                      imgs: allImages,
+                      drawer: true,
+                      drawerMode: 'cover',
                     });
                   }
                 }
-                listType="picture-card"
-                showUploadList={false}
               >
                 {cover !== '' ? <img src={baseUrl + cover} alt="avatar" style={{ width: '100%' }}/> : uploadButton}
-              </Upload>
+              </div>
               <div className="upload-container">
-                <Upload
-                  className="upload"
-                  accept="image/*"
-                  listType='picture'
-                  multiple
-                  onPreview={async (file) => {
-                    this.editor.insertPlaceholder('![图片上传中]()',
-                      imgUpload(file.originFileObj, true));
-                  }}
+                <Button block
+                        onClick={
+                          async () => {
+                            const allImages = await getImgs();
+                            this.setState({
+                              imgs: allImages,
+                              drawer: true,
+                              drawerMode: 'article',
+                            });
+                          }
+                        }
                 >
-                  <Button block>
-                    <UploadOutlined/> 添加图片
-                  </Button>
-                </Upload>
+                  <UploadOutlined/> 添加图片
+                </Button>
               </div>
             </Col>
           </Row>
         </Card>
+        <ImageDrawer
+          visible={drawer}
+          imgs={imgs}
+          updateImages={
+            async () => {
+              const allImages = await getImgs();
+              this.setState({
+                imgs: allImages,
+                drawer: true,
+              });
+            }
+          }
+          onDrawerClose={
+            () => {
+              this.setState({
+                drawer: false,
+              });
+            }
+          }
+          onImageClick={
+            (img) => {
+              if (drawerMode === 'article') {
+                this.editor.insertMarkdown('image', {
+                  imageUrl: baseUrl + img,
+                });
+              } else if (drawerMode === 'cover') {
+                this.setState({
+                  cover: img,
+                });
+              }
+            }
+          }
+        />
       </div>
     );
   }
