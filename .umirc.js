@@ -38,6 +38,12 @@ export default defineConfig({
           component: '@/pages/back/sort',
         },
         {
+          path: '/admin/web',
+          title: '网站信息',
+          name: '网站信息',
+          component: '@/pages/back/web',
+        },
+        {
           path: '/admin/edit/:id',
           title: '博客编辑',
           component: '@/pages/back/edit',

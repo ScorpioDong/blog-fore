@@ -17,6 +17,7 @@ class Edit extends React.Component {
     value: '',
     title: '',
     description: '',
+    createTime: '',
     sortId: 0,
     cover: '',
     blog: {},
@@ -35,6 +36,7 @@ class Edit extends React.Component {
           this.setState({
             title: data.title,
             description: data.description,
+            createTime: data.createTime,
             value: data.content,
             cover: data.cover,
             sortId: data.sortId,
@@ -46,7 +48,7 @@ class Edit extends React.Component {
 
   render() {
     const { history } = this.props;
-    const { value, title, description, sortId, cover, blog, drawer, imgs, drawerMode } = this.state;
+    const { value, title, description, createTime, sortId, cover, blog, drawer, imgs, drawerMode } = this.state;
     const uploadButton = (
       <div style={{ marginTop: 40 }}>
         <PlusOutlined/>
@@ -119,6 +121,7 @@ class Edit extends React.Component {
                               sortId: sortId,
                               title: title,
                               description: description,
+                              createTime: createTime,
                               content: value,
                               cover: cover,
                               contentPath: blog.contentPath,

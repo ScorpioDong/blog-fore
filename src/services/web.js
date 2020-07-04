@@ -26,6 +26,14 @@ export const login = async (user) => {
   }
 };
 
+export const updateWebInfo = async (web) => {
+  await request.put(
+    '/web/update', {
+      data: web,
+    },
+  );
+};
+
 export const getToken = () => {
   let token = '';
   if (!(memory.token === '')) {
