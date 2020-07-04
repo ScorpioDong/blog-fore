@@ -1,0 +1,23 @@
+.web-edit-container {
+  padding: 10px 300px;
+}
+
+.web-avatar-cover-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.web-avatar {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.web-cover {
+  width: 300px;
+  height: 200px;
+}
