@@ -65,6 +65,12 @@ export default defineConfig({
           component: '@/pages/fore/home',
         },
         {
+          path: '/archives',
+          title: '归档',
+          name: '归档',
+          component: '@/pages/fore/archives',
+        },
+        {
           path: '/blog/:id',
           component: '@/pages/fore/blog',
         },

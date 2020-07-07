@@ -18,6 +18,24 @@ export const getBlogOne = async (id, isMarkdown) => {
   }
 }
 
+export const getBlogNearby = async (id) => {
+  const resp = await request.get('/blog/near/' + id);
+  if (resp.code === '200') {
+    return resp.data;
+  } else {
+    return null;
+  }
+}
+
+export const getBlogArchives = async () => {
+  const resp = await request.get('/blog/archives');
+  if (resp.code === '200') {
+    return resp.data;
+  } else {
+    return null;
+  }
+}
+
 export const blogUpload = async (blog) => {
   const resp = await request.post('/blog/add', {
     data: blog,

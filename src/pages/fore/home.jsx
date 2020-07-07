@@ -3,8 +3,6 @@ import CoverHeader from '@/components/CoverHeader';
 import Pagination from '@/components/Pagination';
 import Article from '@/components/Article';
 import { getBlogPage } from '@/services/blog';
-import { webUpdate } from '@/services/web';
-import { sortUpdate } from '@/services/sort';
 import { toTopNow } from '@/util/page';
 import memory from '@/util/memory';
 import { baseUrl } from '@/util/requst';
